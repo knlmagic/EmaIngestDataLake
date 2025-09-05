@@ -1,0 +1,10 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1016
+PO Number: PO-1016
+Vendor: Wayne Parts Co
+Country: US
+Date: 2025-07-12
+ - SKU: WID-300 | Qty: 7
+ - SKU: BLT-050 | Qty: 13
+ - SKU: FLT-050 | Qty: 16
+ - SKU: SPG-100 | Qty: 10

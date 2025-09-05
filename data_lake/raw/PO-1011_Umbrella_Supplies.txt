@@ -1,9 +1,0 @@
-Document Type: Purchase Order
-        PO Number: PO-1011
-        Vendor: Umbrella Supplies
-        Country: GB
-        Currency: GBP
-        Date: 2025-07-18
-         - SKU: WID-100 | Description: Widget Basic | Qty: 5 | Unit Price: 20.2
- - SKU: SCR-020 | Description: Screw 20mm | Qty: 7 | Unit Price: 13.86
-        Total: 198.02

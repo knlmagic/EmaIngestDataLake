@@ -1,0 +1,11 @@
+Document Type: Invoice
+Invoice Number: INV-1020-1
+PO Number: PO-1020
+Vendor: Initech Pvt Ltd
+Country: IN
+Currency: INR
+Date: 2025-08-07
+ - SKU: CNR-250 | Description: Connector Set | Qty: 13 | Unit Price: 15.09
+ - SKU: SPG-100 | Description: Spring Coil | Qty: 7 | Unit Price: 10.66
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 13 | Unit Price: 6.01
+Total: 348.92

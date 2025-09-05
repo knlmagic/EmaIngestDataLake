@@ -1,8 +1,0 @@
-Document Type: Goods Receipt (GRN)
-        GRN Number: GRN-1006
-        PO Number: PO-1006
-        Vendor: Acme Components Ltd
-        Country: US
-        Date: 2025-07-30
-         - SKU: PNL-300 | Qty: 9
- - SKU: SCR-020 | Qty: 20

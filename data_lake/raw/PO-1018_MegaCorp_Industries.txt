@@ -1,9 +1,0 @@
-Document Type: Purchase Order
-PO Number: PO-1018
-Vendor: MegaCorp Industries
-Country: CA
-Currency: CAD
-Date: 2025-07-29
- - SKU: BRG-001 | Description: Bearing Assembly | Qty: 5 | Unit Price: 22.71
- - SKU: SPG-100 | Description: Spring Coil | Qty: 15 | Unit Price: 13.47
-Total: 315.6

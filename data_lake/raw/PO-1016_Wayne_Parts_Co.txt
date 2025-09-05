@@ -1,0 +1,11 @@
+Document Type: Purchase Order
+PO Number: PO-1016
+Vendor: Wayne Parts Co
+Country: US
+Currency: USD
+Date: 2025-07-11
+ - SKU: WID-300 | Description: Widget Deluxe | Qty: 6 | Unit Price: 16.65
+ - SKU: BLT-050 | Description: Bolt 50mm | Qty: 12 | Unit Price: 5.43
+ - SKU: FLT-050 | Description: Filter Element | Qty: 16 | Unit Price: 20.13
+ - SKU: SPG-100 | Description: Spring Coil | Qty: 10 | Unit Price: 23.69
+Total: 724.04

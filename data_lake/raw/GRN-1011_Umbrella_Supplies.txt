@@ -1,8 +1,0 @@
-Document Type: Goods Receipt (GRN)
-        GRN Number: GRN-1011
-        PO Number: PO-1011
-        Vendor: Umbrella Supplies
-        Country: GB
-        Date: 2025-07-29
-         - SKU: WID-100 | Qty: 10
- - SKU: SCR-020 | Qty: 15

@@ -1,0 +1,9 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1018
+PO Number: PO-1018
+Vendor: Globex Manufacturing
+Country: US
+Date: 2025-07-02
+ - SKU: SCR-030 | Qty: 19
+ - SKU: PNL-600 | Qty: 17
+ - SKU: CBL-100 | Qty: 12

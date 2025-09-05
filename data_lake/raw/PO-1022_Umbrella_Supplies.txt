@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+PO Number: PO-1022
+Vendor: Umbrella Supplies
+Country: GB
+Currency: GBP
+Date: 2025-07-25
+ - SKU: WID-300 | Description: Widget Deluxe | Qty: 7 | Unit Price: 10.63
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 20 | Unit Price: 22.55
+ - SKU: WID-100 | Description: Widget Basic | Qty: 11 | Unit Price: 12.5
+Total: 662.91

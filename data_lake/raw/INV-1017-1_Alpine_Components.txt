@@ -1,0 +1,12 @@
+Document Type: Invoice
+Invoice Number: INV-1017-1
+PO Number: PO-1017
+Vendor: Alpine Components
+Country: DE
+Currency: EUR
+Date: 2025-07-30
+ - SKU: BRG-001 | Description: Bearing Assembly | Qty: 15 | Unit Price: 18.78
+ - SKU: SCR-020 | Description: Screw 20mm | Qty: 14 | Unit Price: 13.48
+ - SKU: WID-200 | Description: Widget Pro | Qty: 19 | Unit Price: 9.27
+ - SKU: SPG-100 | Description: Spring Coil | Qty: 13 | Unit Price: 14.85
+Total: 839.6

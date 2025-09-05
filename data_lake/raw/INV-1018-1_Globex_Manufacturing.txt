@@ -1,0 +1,11 @@
+Document Type: Invoice
+Invoice Number: INV-1018-1
+PO Number: PO-1018
+Vendor: Globex Manufacturing
+Country: US
+Currency: USD
+Date: 2025-07-11
+ - SKU: SCR-030 | Description: Screw 30mm | Qty: 18 | Unit Price: 6.07
+ - SKU: PNL-600 | Description: Panel 600x600 | Qty: 14 | Unit Price: 17.65
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 11 | Unit Price: 11.8
+Total: 486.16

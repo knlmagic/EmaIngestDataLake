@@ -1,9 +1,0 @@
-Document Type: Goods Receipt Note
-GRN Number: GRN-1021
-PO Number: PO-1021
-Vendor: Stark Industrial
-Country: US
-Date: 2025-07-20
- - SKU: BLT-050 | Qty: 6
- - SKU: BLT-075 | Qty: 19
- - SKU: PNL-300 | Qty: 20

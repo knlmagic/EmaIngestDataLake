@@ -1,0 +1,8 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1015
+PO Number: PO-1015
+Vendor: Umbrella Supplies
+Country: GB
+Date: 2025-07-20
+ - SKU: BRG-001 | Qty: 14
+ - SKU: BLT-050 | Qty: 11

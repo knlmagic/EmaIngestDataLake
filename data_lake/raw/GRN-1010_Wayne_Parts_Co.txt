@@ -1,9 +1,0 @@
-Document Type: Goods Receipt (GRN)
-        GRN Number: GRN-1010
-        PO Number: PO-1010
-        Vendor: Wayne Parts Co
-        Country: US
-        Date: 2025-08-19
-         - SKU: WID-200 | Qty: 4
- - SKU: WID-100 | Qty: 11
- - SKU: BLT-050 | Qty: 4

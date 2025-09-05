@@ -1,9 +1,0 @@
-Document Type: Goods Receipt (GRN)
-        GRN Number: GRN-1007
-        PO Number: PO-1007
-        Vendor: Acme Components Ltd
-        Country: US
-        Date: 2025-08-09
-         - SKU: WID-200 | Qty: 16
- - SKU: WID-100 | Qty: 15
- - SKU: BLT-050 | Qty: 14
