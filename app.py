@@ -159,7 +159,7 @@ if st.sidebar.button("Ingest & Reconcile", type="primary"):
         # Add dismiss button
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
-            if st.button("🔒 Dismiss Processing View", type="secondary", width='stretch'):
+            if st.button("🔒 Dismiss Processing View", type="secondary"):
                 progress_container.empty()
                 status_container.empty()  
                 log_container.empty()
