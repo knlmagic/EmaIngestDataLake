@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1010-1
+            PO Number: PO-1010
+            Vendor: Umbrella Supplies
+            Country: GB
+            Currency: GBP
+            Date: 2025-07-10
+             - SKU: FLT-050 | Description: Filter Element | Qty: 9 | Unit Price: 16.72
+ - SKU: BRG-001 | Description: Bearing Assembly | Qty: 10 | Unit Price: 17.17
+            Total: 322.18

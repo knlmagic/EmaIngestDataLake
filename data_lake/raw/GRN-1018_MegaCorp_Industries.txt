@@ -1,0 +1,8 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1018
+PO Number: PO-1018
+Vendor: MegaCorp Industries
+Country: CA
+Date: 2025-07-31
+ - SKU: BRG-001 | Qty: 5
+ - SKU: SPG-100 | Qty: 15

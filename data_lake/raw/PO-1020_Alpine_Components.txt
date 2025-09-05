@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+PO Number: PO-1020
+Vendor: Alpine Components
+Country: DE
+Currency: EUR
+Date: 2025-07-23
+ - SKU: SCR-020 | Description: Screw 20mm | Qty: 15 | Unit Price: 23.56
+ - SKU: WID-200 | Description: Widget Pro | Qty: 8 | Unit Price: 10.05
+Total: 433.8

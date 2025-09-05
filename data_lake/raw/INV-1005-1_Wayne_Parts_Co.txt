@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1005-1
+            PO Number: PO-1005
+            Vendor: Wayne Parts Co
+            Country: US
+            Currency: USD
+            Date: 2025-07-24
+             - SKU: SCR-020 | Description: Screw 20mm | Qty: 10 | Unit Price: 7.2
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 8 | Unit Price: 5.29
+            Total: 114.32

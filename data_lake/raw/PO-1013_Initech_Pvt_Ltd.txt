@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1013
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Currency: INR
+        Date: 2025-08-15
+         - SKU: WID-300 | Description: Widget Deluxe | Qty: 19 | Unit Price: 9.39
+ - SKU: BLT-075 | Description: Bolt 75mm | Qty: 8 | Unit Price: 12.97
+ - SKU: CNR-250 | Description: Connector Set | Qty: 20 | Unit Price: 8.26
+        Total: 447.37

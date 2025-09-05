@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1012
+        PO Number: PO-1012
+        Vendor: Hooli Metals
+        Country: US
+        Date: 2025-07-29
+         - SKU: GSK-200 | Qty: 18
+ - SKU: PNL-600 | Qty: 17

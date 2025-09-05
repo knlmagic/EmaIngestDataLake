@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1010
+        Vendor: Umbrella Supplies
+        Country: GB
+        Currency: GBP
+        Date: 2025-07-19
+         - SKU: FLT-050 | Description: Filter Element | Qty: 15 | Unit Price: 10.19
+ - SKU: BRG-001 | Description: Bearing Assembly | Qty: 18 | Unit Price: 21.68
+        Total: 543.09

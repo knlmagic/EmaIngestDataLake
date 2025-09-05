@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1001-1
+            PO Number: PO-1001
+            Vendor: Initech Pvt Ltd
+            Country: IN
+            Currency: INR
+            Date: 2025-07-24
+             - SKU: BRG-001 | Description: Bearing Assembly | Qty: 20 | Unit Price: 18.61
+ - SKU: BLT-075 | Description: Bolt 75mm | Qty: 15 | Unit Price: 14.31
+            Total: 586.85

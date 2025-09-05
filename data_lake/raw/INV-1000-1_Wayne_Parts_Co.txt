@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1000-1
+            PO Number: PO-1000
+            Vendor: Wayne Parts Co
+            Country: US
+            Currency: USD
+            Date: 2025-07-19
+             - SKU: SPG-100 | Description: Spring Coil | Qty: 8 | Unit Price: 23.95
+ - SKU: WID-100 | Description: Widget Basic | Qty: 6 | Unit Price: 16.54
+ - SKU: WID-200 | Description: Widget Pro | Qty: 12 | Unit Price: 5.93
+            Total: 362.0

@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1011-1
+            PO Number: PO-1011
+            Vendor: Umbrella Supplies
+            Country: GB
+            Currency: GBP
+            Date: 2025-07-13
+             - SKU: WID-100 | Description: Widget Basic | Qty: 20 | Unit Price: 15.16
+ - SKU: SCR-020 | Description: Screw 20mm | Qty: 13 | Unit Price: 23.46
+            Total: 608.18

@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1012
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Currency: INR
+        Date: 2025-07-27
+         - SKU: SCR-020 | Description: Screw 20mm | Qty: 15 | Unit Price: 6.45
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 12 | Unit Price: 13.57
+        Total: 259.59

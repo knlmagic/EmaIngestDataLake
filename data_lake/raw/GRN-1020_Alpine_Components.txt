@@ -1,0 +1,8 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1020
+PO Number: PO-1020
+Vendor: Alpine Components
+Country: DE
+Date: 2025-08-05
+ - SKU: SCR-020 | Qty: 16
+ - SKU: WID-200 | Qty: 8

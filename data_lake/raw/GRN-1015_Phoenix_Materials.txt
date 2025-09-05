@@ -1,0 +1,9 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1015
+PO Number: PO-1015
+Vendor: Phoenix Materials
+Country: AU
+Date: 2025-07-23
+ - SKU: PNL-600 | Qty: 6
+ - SKU: CBL-100 | Qty: 12
+ - SKU: SCR-030 | Qty: 12

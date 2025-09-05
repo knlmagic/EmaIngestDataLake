@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+PO Number: PO-1017
+Vendor: Hooli Metals
+Country: US
+Currency: USD
+Date: 2025-07-03
+ - SKU: WID-300 | Description: Widget Deluxe | Qty: 10 | Unit Price: 7.54
+ - SKU: SPG-100 | Description: Spring Coil | Qty: 18 | Unit Price: 9.24
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 11 | Unit Price: 20.39
+Total: 466.01

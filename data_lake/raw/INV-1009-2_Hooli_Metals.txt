@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1009-2
+            PO Number: PO-1009
+            Vendor: Hooli Metals
+            Country: US
+            Currency: USD
+            Date: 2025-07-17
+             - SKU: BRG-001 | Description: Bearing Assembly | Qty: 8 | Unit Price: 15.53
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 18 | Unit Price: 27.48
+            Total: 618.88

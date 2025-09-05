@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1005
+        PO Number: PO-1005
+        Vendor: Wayne Parts Co
+        Country: US
+        Date: 2025-07-14
+         - SKU: SCR-020 | Qty: 7
+ - SKU: PNL-300 | Qty: 7

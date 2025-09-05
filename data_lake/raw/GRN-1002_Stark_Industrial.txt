@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1002
+        PO Number: PO-1002
+        Vendor: Stark Industrial
+        Country: US
+        Date: 2025-07-08
+         - SKU: GSK-200 | Qty: 19
+ - SKU: FLT-050 | Qty: 7

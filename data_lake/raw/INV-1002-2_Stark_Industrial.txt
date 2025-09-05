@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1002-2
+            PO Number: PO-1002
+            Vendor: Stark Industrial
+            Country: US
+            Currency: USD
+            Date: 2025-08-18
+             - SKU: GSK-200 | Description: Gasket Set | Qty: 18 | Unit Price: 8.3
+ - SKU: FLT-050 | Description: Filter Element | Qty: 20 | Unit Price: 13.43
+            Total: 418.0

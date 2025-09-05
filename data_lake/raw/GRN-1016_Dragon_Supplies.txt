@@ -1,0 +1,9 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1016
+PO Number: PO-1016
+Vendor: Dragon Supplies
+Country: CN
+Date: 2025-07-29
+ - SKU: SPG-100 | Qty: 7
+ - SKU: BLT-075 | Qty: 11
+ - SKU: WID-100 | Qty: 9

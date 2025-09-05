@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1013-1
+            PO Number: PO-1013
+            Vendor: Initech Pvt Ltd
+            Country: IN
+            Currency: INR
+            Date: 2025-07-19
+             - SKU: WID-300 | Description: Widget Deluxe | Qty: 11 | Unit Price: 13.05
+ - SKU: BLT-075 | Description: Bolt 75mm | Qty: 15 | Unit Price: 16.08
+ - SKU: CNR-250 | Description: Connector Set | Qty: 5 | Unit Price: 12.69
+            Total: 448.2

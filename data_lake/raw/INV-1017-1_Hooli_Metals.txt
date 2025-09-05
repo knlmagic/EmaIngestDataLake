@@ -1,0 +1,11 @@
+Document Type: Invoice
+Invoice Number: INV-1017-1
+PO Number: PO-1017
+Vendor: Hooli Metals
+Country: US
+Currency: USD
+Date: 2025-07-21
+ - SKU: WID-300 | Description: Widget Deluxe | Qty: 10 | Unit Price: 8.13
+ - SKU: SPG-100 | Description: Spring Coil | Qty: 18 | Unit Price: 8.83
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 11 | Unit Price: 20.81
+Total: 469.15

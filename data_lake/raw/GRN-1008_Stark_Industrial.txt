@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1008
+        PO Number: PO-1008
+        Vendor: Stark Industrial
+        Country: US
+        Date: 2025-08-12
+         - SKU: SCR-020 | Qty: 4
+ - SKU: BLT-050 | Qty: 17
+ - SKU: WID-200 | Qty: 9

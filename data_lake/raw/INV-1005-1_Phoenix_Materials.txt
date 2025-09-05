@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1005-1
+            PO Number: PO-1005
+            Vendor: Phoenix Materials
+            Country: AU
+            Currency: AUD
+            Date: 2025-07-25
+             - SKU: WID-300 | Description: Widget Deluxe | Qty: 8 | Unit Price: 12.39
+ - SKU: GSK-200 | Description: Gasket Set | Qty: 9 | Unit Price: 15.73
+ - SKU: PNL-600 | Description: Panel 600x600 | Qty: 5 | Unit Price: 6.41
+            Total: 272.74

@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1007-1
+            PO Number: PO-1007
+            Vendor: Acme Components Ltd
+            Country: US
+            Currency: USD
+            Date: 2025-07-31
+             - SKU: WID-200 | Description: Widget Pro | Qty: 12 | Unit Price: 21.37
+ - SKU: WID-100 | Description: Widget Basic | Qty: 12 | Unit Price: 9.0
+ - SKU: BLT-050 | Description: Bolt 50mm | Qty: 5 | Unit Price: 24.79
+            Total: 488.39

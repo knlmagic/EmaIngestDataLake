@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1004
+        PO Number: PO-1004
+        Vendor: Umbrella Supplies
+        Country: GB
+        Date: 2025-07-15
+         - SKU: CNR-250 | Qty: 12
+ - SKU: CBL-100 | Qty: 20
+ - SKU: PNL-300 | Qty: 17

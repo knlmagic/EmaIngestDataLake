@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1014
+        Vendor: MegaCorp Industries
+        Country: CA
+        Currency: CAD
+        Date: 2025-07-05
+         - SKU: CNR-250 | Description: Connector Set | Qty: 12 | Unit Price: 24.43
+ - SKU: FLT-050 | Description: Filter Element | Qty: 8 | Unit Price: 6.68
+        Total: 346.6

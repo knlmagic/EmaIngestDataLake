@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1003
+        PO Number: PO-1003
+        Vendor: Wayne Parts Co
+        Country: US
+        Date: 2025-07-19
+         - SKU: PNL-300 | Qty: 6
+ - SKU: SCR-020 | Qty: 16
+ - SKU: BLT-050 | Qty: 21

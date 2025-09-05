@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1000
+        Vendor: Wayne Parts Co
+        Country: US
+        Currency: USD
+        Date: 2025-07-10
+         - SKU: SPG-100 | Description: Spring Coil | Qty: 8 | Unit Price: 12.31
+ - SKU: WID-100 | Description: Widget Basic | Qty: 6 | Unit Price: 23.19
+ - SKU: WID-200 | Description: Widget Pro | Qty: 11 | Unit Price: 5.75
+        Total: 300.87

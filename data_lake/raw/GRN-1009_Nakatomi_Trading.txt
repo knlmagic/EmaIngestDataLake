@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1009
+        PO Number: PO-1009
+        Vendor: Nakatomi Trading
+        Country: JP
+        Date: 2025-07-02
+         - SKU: WID-100 | Qty: 19
+ - SKU: WID-200 | Qty: 18
+ - SKU: PNL-300 | Qty: 9

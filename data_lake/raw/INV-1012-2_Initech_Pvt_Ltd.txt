@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1012-2
+            PO Number: PO-1012
+            Vendor: Initech Pvt Ltd
+            Country: IN
+            Currency: INR
+            Date: 2025-08-01
+             - SKU: SCR-020 | Description: Screw 20mm | Qty: 16 | Unit Price: 7.86
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 19 | Unit Price: 9.39
+            Total: 304.17

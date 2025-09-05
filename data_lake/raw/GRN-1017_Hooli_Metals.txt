@@ -1,0 +1,9 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1017
+PO Number: PO-1017
+Vendor: Hooli Metals
+Country: US
+Date: 2025-07-16
+ - SKU: WID-300 | Qty: 10
+ - SKU: SPG-100 | Qty: 18
+ - SKU: CBL-100 | Qty: 10

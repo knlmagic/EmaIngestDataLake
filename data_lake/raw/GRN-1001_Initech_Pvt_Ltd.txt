@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1001
+        PO Number: PO-1001
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Date: 2025-08-09
+         - SKU: BRG-001 | Qty: 6
+ - SKU: BLT-075 | Qty: 5

@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1006
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Currency: INR
+        Date: 2025-08-10
+         - SKU: SCR-020 | Description: Screw 20mm | Qty: 20 | Unit Price: 7.46
+ - SKU: BRG-001 | Description: Bearing Assembly | Qty: 20 | Unit Price: 24.86
+ - SKU: CNR-250 | Description: Connector Set | Qty: 19 | Unit Price: 14.61
+        Total: 923.99

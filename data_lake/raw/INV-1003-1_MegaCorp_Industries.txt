@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1003-1
+            PO Number: PO-1003
+            Vendor: MegaCorp Industries
+            Country: CA
+            Currency: CAD
+            Date: 2025-07-09
+             - SKU: SCR-020 | Description: Screw 20mm | Qty: 17 | Unit Price: 22.74
+ - SKU: GSK-200 | Description: Gasket Set | Qty: 19 | Unit Price: 12.11
+ - SKU: CNR-250 | Description: Connector Set | Qty: 20 | Unit Price: 6.18
+            Total: 740.27

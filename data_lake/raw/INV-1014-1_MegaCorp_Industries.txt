@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1014-1
+            PO Number: PO-1014
+            Vendor: MegaCorp Industries
+            Country: CA
+            Currency: CAD
+            Date: 2025-08-02
+             - SKU: CNR-250 | Description: Connector Set | Qty: 18 | Unit Price: 21.99
+ - SKU: FLT-050 | Description: Filter Element | Qty: 13 | Unit Price: 13.12
+            Total: 566.38

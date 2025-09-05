@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1014
+        PO Number: PO-1014
+        Vendor: MegaCorp Industries
+        Country: CA
+        Date: 2025-08-18
+         - SKU: CNR-250 | Qty: 6
+ - SKU: FLT-050 | Qty: 13

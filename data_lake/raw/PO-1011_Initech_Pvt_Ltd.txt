@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1011
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Currency: INR
+        Date: 2025-07-10
+         - SKU: BRG-001 | Description: Bearing Assembly | Qty: 6 | Unit Price: 11.52
+ - SKU: GSK-200 | Description: Gasket Set | Qty: 20 | Unit Price: 20.69
+ - SKU: WID-200 | Description: Widget Pro | Qty: 8 | Unit Price: 22.66
+        Total: 664.2

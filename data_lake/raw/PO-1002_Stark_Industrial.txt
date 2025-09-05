@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1002
+        Vendor: Stark Industrial
+        Country: US
+        Currency: USD
+        Date: 2025-07-16
+         - SKU: GSK-200 | Description: Gasket Set | Qty: 12 | Unit Price: 6.64
+ - SKU: FLT-050 | Description: Filter Element | Qty: 14 | Unit Price: 15.5
+        Total: 296.68

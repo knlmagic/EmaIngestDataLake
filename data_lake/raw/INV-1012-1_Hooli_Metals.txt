@@ -1,0 +1,10 @@
+Document Type: Invoice
+            Invoice Number: INV-1012-1
+            PO Number: PO-1012
+            Vendor: Hooli Metals
+            Country: US
+            Currency: USD
+            Date: 2025-08-19
+             - SKU: GSK-200 | Description: Gasket Set | Qty: 7 | Unit Price: 18.42
+ - SKU: PNL-600 | Description: Panel 600x600 | Qty: 11 | Unit Price: 18.39
+            Total: 331.23

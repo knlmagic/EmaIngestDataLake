@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1012
+        PO Number: PO-1012
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Date: 2025-08-15
+         - SKU: SCR-020 | Qty: 14
+ - SKU: PNL-300 | Qty: 9

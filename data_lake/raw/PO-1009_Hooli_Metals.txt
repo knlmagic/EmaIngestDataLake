@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1009
+        Vendor: Hooli Metals
+        Country: US
+        Currency: USD
+        Date: 2025-08-11
+         - SKU: BRG-001 | Description: Bearing Assembly | Qty: 20 | Unit Price: 18.15
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 16 | Unit Price: 8.12
+        Total: 492.92

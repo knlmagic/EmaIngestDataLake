@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1013
+        PO Number: PO-1013
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Date: 2025-07-22
+         - SKU: WID-300 | Qty: 14
+ - SKU: BLT-075 | Qty: 18
+ - SKU: CNR-250 | Qty: 16

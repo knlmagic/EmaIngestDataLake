@@ -1,0 +1,11 @@
+Document Type: Invoice
+            Invoice Number: INV-1004-1
+            PO Number: PO-1004
+            Vendor: Umbrella Supplies
+            Country: GB
+            Currency: GBP
+            Date: 2025-07-24
+             - SKU: CNR-250 | Description: Connector Set | Qty: 7 | Unit Price: 8.52
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 12 | Unit Price: 5.24
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 10 | Unit Price: 11.06
+            Total: 233.12

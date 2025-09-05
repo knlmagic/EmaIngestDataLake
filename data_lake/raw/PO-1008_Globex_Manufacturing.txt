@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1008
+        Vendor: Globex Manufacturing
+        Country: US
+        Currency: USD
+        Date: 2025-07-15
+         - SKU: BLT-050 | Description: Bolt 50mm | Qty: 20 | Unit Price: 17.48
+ - SKU: SCR-020 | Description: Screw 20mm | Qty: 5 | Unit Price: 14.59
+ - SKU: CNR-250 | Description: Connector Set | Qty: 16 | Unit Price: 20.99
+        Total: 758.39

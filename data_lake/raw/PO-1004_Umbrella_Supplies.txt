@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1004
+        Vendor: Umbrella Supplies
+        Country: GB
+        Currency: GBP
+        Date: 2025-07-26
+         - SKU: CNR-250 | Description: Connector Set | Qty: 7 | Unit Price: 8.33
+ - SKU: CBL-100 | Description: Cable Assembly | Qty: 17 | Unit Price: 15.99
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 9 | Unit Price: 21.39
+        Total: 522.65

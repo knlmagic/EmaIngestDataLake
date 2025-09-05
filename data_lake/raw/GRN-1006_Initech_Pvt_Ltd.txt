@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1006
+        PO Number: PO-1006
+        Vendor: Initech Pvt Ltd
+        Country: IN
+        Date: 2025-08-17
+         - SKU: SCR-020 | Qty: 7
+ - SKU: BRG-001 | Qty: 8
+ - SKU: CNR-250 | Qty: 17

@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1005
+        PO Number: PO-1005
+        Vendor: Phoenix Materials
+        Country: AU
+        Date: 2025-07-29
+         - SKU: WID-300 | Qty: 19
+ - SKU: GSK-200 | Qty: 11
+ - SKU: PNL-600 | Qty: 11

@@ -1,0 +1,10 @@
+Document Type: Purchase Order
+        PO Number: PO-1003
+        Vendor: MegaCorp Industries
+        Country: CA
+        Currency: CAD
+        Date: 2025-08-06
+         - SKU: SCR-020 | Description: Screw 20mm | Qty: 20 | Unit Price: 16.6
+ - SKU: GSK-200 | Description: Gasket Set | Qty: 19 | Unit Price: 6.38
+ - SKU: CNR-250 | Description: Connector Set | Qty: 7 | Unit Price: 23.89
+        Total: 620.45

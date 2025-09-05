@@ -1,0 +1,9 @@
+Document Type: Purchase Order
+        PO Number: PO-1014
+        Vendor: Umbrella Supplies
+        Country: GB
+        Currency: GBP
+        Date: 2025-07-07
+         - SKU: BLT-050 | Description: Bolt 50mm | Qty: 6 | Unit Price: 23.12
+ - SKU: PNL-300 | Description: Panel 300x300 | Qty: 10 | Unit Price: 10.41
+        Total: 242.82

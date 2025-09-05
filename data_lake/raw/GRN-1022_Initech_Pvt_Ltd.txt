@@ -1,0 +1,8 @@
+Document Type: Goods Receipt Note
+GRN Number: GRN-1022
+PO Number: PO-1022
+Vendor: Initech Pvt Ltd
+Country: IN
+Date: 2025-07-11
+ - SKU: SPG-100 | Qty: 12
+ - SKU: BLT-075 | Qty: 10

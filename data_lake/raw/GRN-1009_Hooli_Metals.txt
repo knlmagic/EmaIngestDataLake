@@ -1,0 +1,8 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1009
+        PO Number: PO-1009
+        Vendor: Hooli Metals
+        Country: US
+        Date: 2025-08-16
+         - SKU: BRG-001 | Qty: 8
+ - SKU: CBL-100 | Qty: 5

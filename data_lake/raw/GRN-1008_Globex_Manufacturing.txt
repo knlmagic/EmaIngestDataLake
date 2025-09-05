@@ -1,0 +1,9 @@
+Document Type: Goods Receipt (GRN)
+        GRN Number: GRN-1008
+        PO Number: PO-1008
+        Vendor: Globex Manufacturing
+        Country: US
+        Date: 2025-07-28
+         - SKU: BLT-050 | Qty: 8
+ - SKU: SCR-020 | Qty: 12
+ - SKU: CNR-250 | Qty: 11
