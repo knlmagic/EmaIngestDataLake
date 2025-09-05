@@ -2,7 +2,17 @@
 from __future__ import annotations
 import sqlite3, json
 
-def reconcile(conn: sqlite3.Connection, qty_tol_units=1, price_tol_pct=2.0):
+def reconcile(conn: sqlite3.Connection, qty_tol_units=1, price_tol_pct=2.0, progress_callback=None):
+    """
+    Perform 3-way reconciliation of Purchase Orders, Invoices, and GRNs.
+    
+    Args:
+        conn: Database connection
+        qty_tol_units: Quantity tolerance in units
+        price_tol_pct: Price tolerance in percentage
+        progress_callback: Optional callback for progress updates
+                          Called with (message, processed_count, total_count, current_invoice)
+    """
     cur = conn.cursor()
     # clear prior results
     cur.execute("DELETE FROM reconciliation")
@@ -21,7 +31,14 @@ def reconcile(conn: sqlite3.Connection, qty_tol_units=1, price_tol_pct=2.0):
     # iterate invoices
     cur.execute("SELECT invoice_number, po_number, vendor FROM invoices")
     invoices = cur.fetchall()
-    for inv_no, po_no, vendor in invoices:
+    total_invoices = len(invoices)
+    
+    if progress_callback:
+        progress_callback(f"🔄 Starting reconciliation of {total_invoices} invoices...", 0, total_invoices, None)
+    
+    for invoice_index, (inv_no, po_no, vendor) in enumerate(invoices, 1):
+        if progress_callback:
+            progress_callback(f"🔍 Reconciling invoice {inv_no}...", invoice_index - 1, total_invoices, inv_no)
         status = "MATCH"; qty_var = 0.0; price_var_pct = 0.0; comments = ""
         if inv_no in dups:
             status = "DUP_INVOICE"; comments = "Duplicate invoice"
@@ -79,6 +96,10 @@ def reconcile(conn: sqlite3.Connection, qty_tol_units=1, price_tol_pct=2.0):
             status = "OVERBILL"; comments = "Invoice total exceeds PO total"
         
         _upsert(conn, inv_no, po_no, vendor, status, qty_var, price_var_pct, comments)
+    
+    if progress_callback:
+        progress_callback(f"✅ Reconciliation complete: {total_invoices} invoices processed", 
+                         total_invoices, total_invoices, None)
 
 def _upsert(conn, invoice_number, po_number, vendor, status, qty_var, price_var_pct, comments):
     conn.execute("""INSERT OR REPLACE INTO reconciliation

@@ -6,16 +6,38 @@ from datetime import datetime
 from .classify_extract import classify, extract, file_hash
 from .pdf_processor import read_document_content, is_supported_file_type, get_file_info, get_document_processing_info
 
-def ingest_folder(conn: sqlite3.Connection, folder: Path):
-    # returns (ingested_count, skipped_count, error_count)
+def ingest_folder(conn: sqlite3.Connection, folder: Path, progress_callback=None):
+    """
+    Ingest documents from a folder.
+    
+    Args:
+        conn: Database connection
+        folder: Path to folder containing documents
+        progress_callback: Optional callback function for progress updates
+                          Called with (message, file_count, total_files, current_file)
+    
+    Returns:
+        (ingested_count, skipped_count, error_count)
+    """
     ingested = 0; skipped = 0; errors = 0
-    for path in sorted(folder.glob("*")):
-        if path.is_dir():
-            continue
+    
+    # Get list of files for progress tracking
+    all_files = [path for path in sorted(folder.glob("*")) if not path.is_dir()]
+    total_files = len(all_files)
+    
+    if progress_callback:
+        progress_callback(f"Starting processing of {total_files} files...", 0, total_files, None)
+    
+    for file_index, path in enumerate(all_files, 1):
+        if progress_callback:
+            progress_callback(f"Processing {path.name}...", file_index - 1, total_files, path.name)
         
         # Check if file type is supported
         if not is_supported_file_type(path):
-            print(f"Skipping unsupported file type: {path}")
+            message = f"Skipping unsupported file type: {path.name}"
+            print(message)
+            if progress_callback:
+                progress_callback(message, file_index, total_files, path.name)
             skipped += 1
             continue
         
@@ -27,6 +49,9 @@ def ingest_folder(conn: sqlite3.Connection, folder: Path):
             # de-dup by hash+path
             row = conn.execute("SELECT id FROM documents WHERE path=? OR hash=?", (str(path), h)).fetchone()
             if row:
+                message = f"Skipping duplicate file: {path.name}"
+                if progress_callback:
+                    progress_callback(message, file_index, total_files, path.name)
                 skipped += 1
                 continue
             
@@ -73,14 +98,25 @@ def ingest_folder(conn: sqlite3.Connection, folder: Path):
             
             # Enhanced logging with OCR info
             ocr_info = f" | OCR: {ocr_confidence:.1f}%" if processing_info["requires_ocr"] else ""
-            print(f"✅ Processed {path.name} | Method: {processing_method}{ocr_info}")
+            success_message = f"✅ Processed {path.name} | Method: {processing_method}{ocr_info}"
+            print(success_message)
+            if progress_callback:
+                progress_callback(success_message, file_index, total_files, path.name)
             
         except Exception as e:
-            print(f"Error processing {path}: {e}")
+            error_message = f"❌ Error processing {path.name}: {e}"
+            print(error_message)
+            if progress_callback:
+                progress_callback(error_message, file_index, total_files, path.name)
             errors += 1
             continue
     
     conn.commit()
+    
+    if progress_callback:
+        progress_callback(f"✅ Ingestion complete: {ingested} processed, {skipped} skipped, {errors} errors", 
+                         total_files, total_files, None)
+    
     return ingested, skipped, errors
 
 def _persist_structured(conn: sqlite3.Connection, doc: dict):

@@ -23,6 +23,13 @@ from pipeline.reconcile import reconcile
 from pipeline.insights import kpis, exceptions_table, vendor_summary, audit_for_invoice
 from pipeline.sample_data import generate as generate_sample, generate_enhanced
 from pipeline.reset_manager import ResetManager
+from pipeline.processing_state import (
+    get_processing_state, 
+    create_progress_callback, 
+    render_processing_tab, 
+    get_tab_labels, 
+    get_tab_mapping
+)
 
 # Load environment variables
 load_dotenv()
@@ -191,23 +198,77 @@ if st.sidebar.button("Ingest & Reconcile", type="primary"):
     if status["data_files_count"] == 0:
         st.sidebar.warning("No files to process. Upload files or generate sample data first.")
     else:
-        with st.spinner("Processing documents..."):
-            try:
-                conn = connect(DB_PATH)
-                ing, skip, errors = ingest_folder(conn, DATA_RAW)
-                reconcile(conn, qty_tol_units=qty_tol, price_tol_pct=price_tol)
+        # Initialize processing state
+        processing_state = get_processing_state()
+        processing_state.start_processing()
+        
+        # Create real-time UI containers in the main area
+        st.markdown("### 🔄 Processing Documents...")
+        
+        # Create UI containers for real-time updates
+        progress_container = st.empty()
+        status_container = st.empty()  
+        log_container = st.empty()
+        
+        ui_containers = {
+            'progress_bar': progress_container,
+            'status': status_container,
+            'log': log_container
+        }
+        
+        # Create progress callback with UI containers
+        progress_callback = create_progress_callback(ui_containers)
+        
+        try:
+            conn = connect(DB_PATH)
+            
+            # Set ingestion phase
+            processing_state.current_phase = "ingestion"
+            status_container.markdown("**Phase:** Ingestion starting...")
+            
+            ing, skip, errors = ingest_folder(conn, DATA_RAW, progress_callback)
+            
+            # Set reconciliation phase  
+            processing_state.current_phase = "reconciliation"
+            status_container.markdown("**Phase:** Reconciliation starting...")
+            
+            reconcile(conn, qty_tol_units=qty_tol, price_tol_pct=price_tol, progress_callback=progress_callback)
+            
+            # Finish processing
+            processing_state.finish_processing()
+            
+            # Show final status
+            progress_container.success("✅ Processing Complete!")
+            status_container.markdown(f"**✅ Completed:** {ing} files processed, {skip} skipped, {errors} errors")
+            
+            # Add dismiss button
+            col1, col2, col3 = st.columns([1, 1, 1])
+            with col2:
+                if st.button("🔒 Dismiss Processing View", type="secondary", width='stretch'):
+                    progress_container.empty()
+                    status_container.empty()  
+                    log_container.empty()
+                    st.rerun()
+            
+            conn.close()
+            
+            if errors > 0:
+                st.sidebar.warning(f"Processed: {ing} files, Skipped: {skip}, Errors: {errors}")
+            else:
+                st.sidebar.success(f"✅ Processed: {ing} files, Skipped: {skip}")
+            
+            # Don't auto-clear - let user dismiss manually
+            # Refresh to show updated metrics and processing tab
+            st.rerun()
+            
+        except Exception as e:
+            processing_state.add_message(f"❌ Processing failed: {e}")
+            processing_state.finish_processing()
+            progress_container.error(f"❌ Processing failed: {e}")
+            status_container.markdown(f"**Error:** {e}")
+            st.sidebar.error(f"Processing failed: {e}")
+            if 'conn' in locals():
                 conn.close()
-                
-                if errors > 0:
-                    st.sidebar.warning(f"Processed: {ing} files, Skipped: {skip}, Errors: {errors}")
-                else:
-                    st.sidebar.success(f"✅ Processed: {ing} files, Skipped: {skip}")
-                
-                # Refresh to show updated metrics
-                st.rerun()
-                
-            except Exception as e:
-                st.sidebar.error(f"Processing failed: {e}")
 
 # Reset Options (simplified for cloud)
 st.sidebar.markdown("---")
@@ -247,11 +308,24 @@ with st.sidebar.container():
             except Exception as e:
                 st.error(f"Reset failed: {e}")
 
-# Main tabs (same as original)
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Overview", "Exceptions", "Vendor Insights", "Audit Trail", "Cloud Info"])
+# Main tabs - dynamic based on processing state (Cloud version uses "Cloud Info" instead of "Backup Management")
+tab_labels = get_tab_labels()
+# Replace "Backup Management" with "Cloud Info" for Heroku version
+if "Backup Management" in tab_labels:
+    tab_labels = [label if label != "Backup Management" else "Cloud Info" for label in tab_labels]
+tab_mapping = get_tab_mapping()
+# Update mapping for cloud info tab
+if "backup_management" in tab_mapping:
+    tab_mapping["cloud_info"] = tab_mapping.pop("backup_management")
 
-# Tab content (same as original app.py but with tab5 changed)
-with tab1:
+if len(tab_labels) == 6:  # Processing tab is visible
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(tab_labels)
+    tabs = [tab1, tab2, tab3, tab4, tab5, tab6]
+else:  # No processing tab
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
+    tabs = [tab1, tab2, tab3, tab4, tab5]
+# Overview Tab
+with tabs[tab_mapping["overview"]]:
     if DB_PATH.exists():
         conn = connect(DB_PATH)
         metrics = kpis(conn)
@@ -318,7 +392,7 @@ with tab1:
                 st.bar_chart(chart_data, use_container_width=True)
             
             with table_col:
-                st.dataframe(doc_df, use_container_width=True, hide_index=True)
+                st.dataframe(doc_df, width='stretch', hide_index=True)
         else:
             st.write("No document data available. Upload files and click 'Ingest & Reconcile' to process documents.")
         
@@ -334,7 +408,7 @@ with tab1:
                 })
             
             status_df = pd.DataFrame(status_data)
-            st.dataframe(status_df, use_container_width=True, hide_index=True)
+            st.dataframe(status_df, width='stretch', hide_index=True)
         else:
             st.write("No reconciliation data available. Upload files and click 'Ingest & Reconcile' to process documents.")
         
@@ -365,7 +439,7 @@ with tab1:
                     })
                 
                 ocr_df = pd.DataFrame(ocr_data)
-                st.dataframe(ocr_df, use_container_width=True, hide_index=True)
+                st.dataframe(ocr_df, width='stretch', hide_index=True)
             else:
                 st.write("No processing data available.")
         except Exception as e:
@@ -375,33 +449,41 @@ with tab1:
     else:
         st.info("No database found. Upload files and click 'Ingest & Reconcile' to start processing documents.")
 
-with tab2:
+# Processing Tab (when visible)
+if "processing" in tab_mapping:
+    with tabs[tab_mapping["processing"]]:
+        render_processing_tab()
+
+# Exceptions Tab  
+with tabs[tab_mapping["exceptions"]]:
     if DB_PATH.exists():
         conn = connect(DB_PATH)
         df = exceptions_table(conn)
         if not df.empty:
             st.write("Filter by status:")
             statuses = st.multiselect("Status", sorted(df["status"].unique()), default=list(sorted(df["status"].unique())))
-            st.dataframe(df[df["status"].isin(statuses)], use_container_width=True)
+            st.dataframe(df[df["status"].isin(statuses)], width='stretch')
         else:
             st.info("No exceptions found. Upload files and click 'Ingest & Reconcile' to process documents.")
         conn.close()
     else:
         st.info("No database found. Upload files and click 'Ingest & Reconcile' to start processing documents.")
 
-with tab3:
+# Vendor Insights Tab
+with tabs[tab_mapping["vendor_insights"]]:
     if DB_PATH.exists():
         conn = connect(DB_PATH)
         vs = vendor_summary(conn)
         if not vs.empty:
-            st.dataframe(vs, use_container_width=True)
+            st.dataframe(vs, width='stretch')
         else:
             st.info("No vendor data found. Upload files and click 'Ingest & Reconcile' to process documents.")
         conn.close()
     else:
         st.info("No database found. Upload files and click 'Ingest & Reconcile' to start processing documents.")
 
-with tab4:
+# Audit Trail Tab
+with tabs[tab_mapping["audit_trail"]]:
     invoice_id = st.text_input("Invoice Number to audit (e.g., INV-1000-1)")
     if invoice_id:
         if DB_PATH.exists():
@@ -416,8 +498,8 @@ with tab4:
         else:
             st.info("No database found. Upload files and click 'Ingest & Reconcile' to start processing documents.")
 
-# New Cloud Info tab
-with tab5:
+# Cloud Info Tab  
+with tabs[tab_mapping["cloud_info"]]:
     st.header("☁️ Cloud Deployment Information")
     
     col1, col2 = st.columns(2)
