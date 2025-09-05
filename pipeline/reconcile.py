@@ -38,7 +38,7 @@ def reconcile(conn: sqlite3.Connection, qty_tol_units=1, price_tol_pct=2.0, prog
     
     for invoice_index, (inv_no, po_no, vendor) in enumerate(invoices, 1):
         if progress_callback:
-            progress_callback(f"🔍 Reconciling invoice {inv_no}...", invoice_index - 1, total_invoices, inv_no)
+            progress_callback(f"🔍 Reconciling invoice {inv_no}", invoice_index - 1, total_invoices, inv_no)
         status = "MATCH"; qty_var = 0.0; price_var_pct = 0.0; comments = ""
         if inv_no in dups:
             status = "DUP_INVOICE"; comments = "Duplicate invoice"

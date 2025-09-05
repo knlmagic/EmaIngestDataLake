@@ -48,15 +48,15 @@ with col1:
         st.success("✅ Basic sample data generated!")
 
 with col2:
-    if st.button("Enhanced Random Data", help="Generate 8 random sets with missing docs, variances & mixed formats"):
+    if st.button("Enhanced Random Data", help="Generate 30 random files with missing docs, variances & mixed formats"):
         try:
-            files = generate_enhanced(DATA_RAW, n_sets=8)
+            files = generate_enhanced(DATA_RAW, n_sets=10)  # 10 sets should generate ~30 files
             st.success(f"🎲 Generated {len(files)} random files!")
             st.caption("Includes missing docs, price/qty variances, duplicates, and mixed formats (TXT/PDF/OCR)")
         except Exception as e:
             st.error(f"Generation failed: {e}")
             # Fallback to basic generation
-            generate_sample(DATA_RAW, n_sets=8)
+            generate_sample(DATA_RAW, n_sets=10)
             st.info("Used basic generation as fallback")
 
 # System Status
