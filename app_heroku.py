@@ -83,7 +83,7 @@ uploaded_files = st.sidebar.file_uploader(
 # Process uploaded files
 if uploaded_files:
     upload_count = 0
-    with st.sidebar.spinner("Processing uploaded files..."):
+    with st.spinner("Processing uploaded files..."):
         for uploaded_file in uploaded_files:
             try:
                 # Save uploaded file to temp directory
@@ -191,7 +191,7 @@ if st.sidebar.button("Ingest & Reconcile", type="primary"):
     if status["data_files_count"] == 0:
         st.sidebar.warning("No files to process. Upload files or generate sample data first.")
     else:
-        with st.sidebar.spinner("Processing documents..."):
+        with st.spinner("Processing documents..."):
             try:
                 conn = connect(DB_PATH)
                 ing, skip, errors = ingest_folder(conn, DATA_RAW)
