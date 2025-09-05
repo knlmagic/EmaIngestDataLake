@@ -1,9 +1,0 @@
-Document Type: Goods Receipt Note
-GRN Number: GRN-1020
-PO Number: PO-1020
-Vendor: Initech Pvt Ltd
-Country: IN
-Date: 2025-08-05
- - SKU: CNR-250 | Qty: 14
- - SKU: SPG-100 | Qty: 7
- - SKU: PNL-300 | Qty: 13

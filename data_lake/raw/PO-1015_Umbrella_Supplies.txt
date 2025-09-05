@@ -1,9 +1,0 @@
-Document Type: Purchase Order
-PO Number: PO-1015
-Vendor: Umbrella Supplies
-Country: GB
-Currency: GBP
-Date: 2025-07-17
- - SKU: BRG-001 | Description: Bearing Assembly | Qty: 14 | Unit Price: 21.3
- - SKU: BLT-050 | Description: Bolt 50mm | Qty: 11 | Unit Price: 21.22
-Total: 531.62

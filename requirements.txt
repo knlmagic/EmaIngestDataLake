@@ -8,8 +8,15 @@ plotly==5.22.0
 pdfplumber==0.10.3
 reportlab==4.0.7
 
-# Simple OCR Dependencies
+# OCR Dependencies
 pytesseract==0.3.10
 Pillow==10.4.0
 pdf2image==1.17.0
 opencv-python==4.9.0.80
+
+# Cloud deployment dependencies  
+gunicorn==21.2.0
+psycopg2-binary==2.9.7
+
+# Additional utilities for cloud deployment
+requests==2.31.0

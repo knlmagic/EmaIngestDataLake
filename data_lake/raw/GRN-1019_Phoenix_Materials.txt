@@ -1,8 +1,0 @@
-Document Type: Goods Receipt Note
-GRN Number: GRN-1019
-PO Number: PO-1019
-Vendor: Phoenix Materials
-Country: AU
-Date: 2025-07-20
- - SKU: BLT-075 | Qty: 13
- - SKU: FLT-050 | Qty: 20

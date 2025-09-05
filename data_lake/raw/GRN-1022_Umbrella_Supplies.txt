@@ -1,9 +1,0 @@
-Document Type: Goods Receipt Note
-GRN Number: GRN-1022
-PO Number: PO-1022
-Vendor: Umbrella Supplies
-Country: GB
-Date: 2025-08-05
- - SKU: WID-300 | Qty: 6
- - SKU: PNL-300 | Qty: 20
- - SKU: WID-100 | Qty: 11
