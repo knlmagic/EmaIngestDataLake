@@ -392,7 +392,7 @@ with tabs[tab_mapping["overview"]]:
                 st.bar_chart(chart_data, use_container_width=True)
             
             with table_col:
-                st.dataframe(doc_df, width='stretch', hide_index=True)
+                st.dataframe(doc_df, hide_index=True)
         else:
             st.write("No document data available. Upload files and click 'Ingest & Reconcile' to process documents.")
         
@@ -408,7 +408,7 @@ with tabs[tab_mapping["overview"]]:
                 })
             
             status_df = pd.DataFrame(status_data)
-            st.dataframe(status_df, width='stretch', hide_index=True)
+            st.dataframe(status_df, hide_index=True)
         else:
             st.write("No reconciliation data available. Upload files and click 'Ingest & Reconcile' to process documents.")
         
@@ -439,7 +439,7 @@ with tabs[tab_mapping["overview"]]:
                     })
                 
                 ocr_df = pd.DataFrame(ocr_data)
-                st.dataframe(ocr_df, width='stretch', hide_index=True)
+                st.dataframe(ocr_df, hide_index=True)
             else:
                 st.write("No processing data available.")
         except Exception as e:
@@ -462,7 +462,7 @@ with tabs[tab_mapping["exceptions"]]:
         if not df.empty:
             st.write("Filter by status:")
             statuses = st.multiselect("Status", sorted(df["status"].unique()), default=list(sorted(df["status"].unique())))
-            st.dataframe(df[df["status"].isin(statuses)], width='stretch')
+            st.dataframe(df[df["status"].isin(statuses)])
         else:
             st.info("No exceptions found. Upload files and click 'Ingest & Reconcile' to process documents.")
         conn.close()
@@ -475,7 +475,7 @@ with tabs[tab_mapping["vendor_insights"]]:
         conn = connect(DB_PATH)
         vs = vendor_summary(conn)
         if not vs.empty:
-            st.dataframe(vs, width='stretch')
+            st.dataframe(vs)
         else:
             st.info("No vendor data found. Upload files and click 'Ingest & Reconcile' to process documents.")
         conn.close()
