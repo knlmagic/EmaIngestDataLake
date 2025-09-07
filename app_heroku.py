@@ -87,24 +87,64 @@ uploaded_files = st.sidebar.file_uploader(
     help="Supported: TXT, PDF, Images (JPG, PNG, etc.)"
 )
 
-# Process uploaded files
+# Process uploaded files with session state to prevent infinite loops
 if uploaded_files:
-    upload_count = 0
-    with st.spinner("Processing uploaded files..."):
-        for uploaded_file in uploaded_files:
-            try:
-                # Save uploaded file to temp directory
-                file_path = DATA_RAW / uploaded_file.name
-                with open(file_path, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
-                upload_count += 1
-            except Exception as e:
-                st.sidebar.error(f"Failed to save {uploaded_file.name}: {e}")
+    # Initialize session state for tracking uploads
+    if 'last_uploaded_files' not in st.session_state:
+        st.session_state.last_uploaded_files = []
     
-    if upload_count > 0:
-        st.sidebar.success(f"✅ Uploaded {upload_count} files")
-        # Clear the uploader
+    # Check if these are new files (prevent reprocessing on rerun)
+    current_file_names = [f.name for f in uploaded_files]
+    if current_file_names != st.session_state.last_uploaded_files:
+        st.session_state.last_uploaded_files = current_file_names
+        
+        upload_count = 0
+        errors = 0
+        skipped = 0
+        
+        with st.spinner("Processing uploaded files..."):
+            for uploaded_file in uploaded_files:
+                try:
+                    # Check file size (limit to 50MB per file)
+                    file_size_mb = uploaded_file.size / (1024 * 1024)
+                    if file_size_mb > 50:
+                        st.sidebar.warning(f"Skipping {uploaded_file.name}: File too large ({file_size_mb:.1f}MB > 50MB limit)")
+                        skipped += 1
+                        continue
+                    
+                    # Check if file already exists
+                    file_path = DATA_RAW / uploaded_file.name
+                    if file_path.exists():
+                        st.sidebar.info(f"File {uploaded_file.name} already exists, skipping")
+                        skipped += 1
+                        continue
+                    
+                    # Save uploaded file to temp directory
+                    with open(file_path, "wb") as f:
+                        f.write(uploaded_file.getbuffer())
+                    upload_count += 1
+                    
+                except Exception as e:
+                    st.sidebar.error(f"Failed to save {uploaded_file.name}: {e}")
+                    errors += 1
+        
+        # Show results
+        if upload_count > 0:
+            st.sidebar.success(f"✅ Uploaded {upload_count} files successfully")
+        if skipped > 0:
+            st.sidebar.info(f"⏭️ Skipped {skipped} files (duplicates/too large)")
+        if errors > 0:
+            st.sidebar.error(f"❌ Failed to upload {errors} files")
+            
+        # Clear the file uploader by clearing the session state key
+        # This prevents the infinite loop by resetting the uploader widget
+        st.session_state.last_uploaded_files = []
         st.rerun()
+
+# If no new files to process, show current status
+elif 'last_uploaded_files' in st.session_state and st.session_state.last_uploaded_files:
+    # Reset the session state since no files are currently selected
+    st.session_state.last_uploaded_files = []
 
 st.sidebar.header("Sample Data")
 

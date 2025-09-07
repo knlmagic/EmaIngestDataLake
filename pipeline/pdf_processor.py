@@ -8,6 +8,9 @@ import re
 from pathlib import Path
 from typing import Optional, Tuple, Dict, Any
 import logging
+import threading
+import time
+from contextlib import contextmanager
 
 # Core document processing
 import pdfplumber
@@ -33,6 +36,69 @@ except ImportError as e:
     logging.warning(f"OCR dependencies not available: {e}. Install with: pip install pytesseract pdf2image Pillow")
 
 logger = logging.getLogger(__name__)
+
+@contextmanager
+def timeout_context(duration, operation_name="Operation"):
+    """Context manager for timing out operations using threading"""
+    result = [None]
+    exception = [None]
+    completed = [False]
+    
+    def target():
+        try:
+            # The actual operation will be yielded to
+            completed[0] = True
+        except Exception as e:
+            exception[0] = e
+    
+    # For the context manager, we'll track if the operation completes
+    start_time = time.time()
+    try:
+        yield result
+        # If we get here, the operation completed normally
+    except Exception as e:
+        # Re-raise any exceptions from the operation
+        raise
+    finally:
+        # Check if we exceeded the timeout
+        elapsed = time.time() - start_time
+        if elapsed > duration:
+            logger.warning(f"{operation_name} took {elapsed:.1f}s (timeout was {duration}s)")
+
+class TimeoutError(Exception):
+    """Custom timeout exception for OCR operations"""
+    pass
+
+def with_timeout(func, args=(), kwargs=None, timeout_seconds=30, operation_name="Operation"):
+    """Execute a function with timeout using threading"""
+    if kwargs is None:
+        kwargs = {}
+    
+    result = [None]
+    exception = [None]
+    completed = [False]
+    
+    def target():
+        try:
+            result[0] = func(*args, **kwargs)
+            completed[0] = True
+        except Exception as e:
+            exception[0] = e
+            completed[0] = True
+    
+    thread = threading.Thread(target=target)
+    thread.daemon = True
+    thread.start()
+    thread.join(timeout_seconds)
+    
+    if not completed[0]:
+        logger.error(f"{operation_name} timed out after {timeout_seconds} seconds")
+        raise TimeoutError(f"{operation_name} timed out")
+    
+    if exception[0]:
+        raise exception[0]
+    
+    return result[0]
 
 class PDFProcessingError(Exception):
     """Custom exception for PDF processing errors"""
@@ -87,7 +153,7 @@ def _preprocess_image_for_ocr(image):
 
 def _extract_text_with_tesseract(image) -> Tuple[str, float]:
     """
-    Extract text using Tesseract OCR with PIL Image
+    Extract text using Tesseract OCR with PIL Image and timeout protection
     
     Args:
         image: PIL Image
@@ -105,19 +171,34 @@ def _extract_text_with_tesseract(image) -> Tuple[str, float]:
         # Tesseract configuration optimized for documents
         config = '--oem 3 --psm 6'  # Use LSTM OCR engine, assume uniform block of text
         
-        # Extract text
-        text = pytesseract.image_to_string(processed_image, config=config)
+        # Extract text with timeout protection
+        text = with_timeout(
+            pytesseract.image_to_string,
+            args=(processed_image,),
+            kwargs={'config': config},
+            timeout_seconds=10,
+            operation_name="Tesseract text extraction"
+        )
         
-        # Calculate confidence score
+        # Calculate confidence score with timeout protection
         try:
-            data = pytesseract.image_to_data(processed_image, output_type=pytesseract.Output.DICT, config=config)
+            data = with_timeout(
+                pytesseract.image_to_data,
+                args=(processed_image,),
+                kwargs={'output_type': pytesseract.Output.DICT, 'config': config},
+                timeout_seconds=5,
+                operation_name="Tesseract confidence calculation"
+            )
             confidences = [int(conf) for conf in data['conf'] if int(conf) > 0]
             avg_confidence = sum(confidences) / len(confidences) if confidences else 0
-        except Exception:
+        except (TimeoutError, Exception):
             avg_confidence = 75.0  # Default confidence for demo
         
         return text, avg_confidence
         
+    except TimeoutError:
+        logger.warning("Tesseract OCR operation timed out")
+        return "", 0.0
     except Exception as e:
         logger.error(f"Tesseract OCR failed: {e}")
         return "", 0.0
@@ -170,7 +251,7 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
 
 def _extract_text_from_pdf_with_ocr(pdf_path: Path) -> str:
     """
-    Extract text from PDF using OCR (for scanned documents)
+    Extract text from PDF using OCR (for scanned documents) with timeout protection
     
     Args:
         pdf_path: Path to the PDF file
@@ -182,22 +263,41 @@ def _extract_text_from_pdf_with_ocr(pdf_path: Path) -> str:
         raise PDFProcessingError("OCR dependencies not available")
         
     try:
-        # Convert PDF pages to images (limit to first 3 pages for demo performance)
-        images = convert_from_path(pdf_path, dpi=200, first_page=1, last_page=3)
+        # Convert PDF pages to images with timeout protection (30 seconds max)
+        images = with_timeout(
+            convert_from_path, 
+            args=(pdf_path,), 
+            kwargs={'dpi': 150, 'first_page': 1, 'last_page': 3},
+            timeout_seconds=30,
+            operation_name=f"PDF-to-image conversion for {pdf_path.name}"
+        )
         
         all_text = ""
         total_confidence = 0
         page_count = 0
         
         for i, pil_image in enumerate(images):
-            # Extract text from this page using OCR (PIL Image directly)
-            page_text, confidence = _extract_text_with_tesseract(pil_image)
-            
-            if page_text.strip():
-                all_text += f"{page_text}\n"
-                total_confidence += confidence
-                page_count += 1
-                logger.info(f"OCR page {i+1}: {confidence:.1f}% confidence")
+            try:
+                # Extract text from this page using OCR with timeout protection
+                page_text, confidence = with_timeout(
+                    _extract_text_with_tesseract, 
+                    args=(pil_image,),
+                    timeout_seconds=15,
+                    operation_name=f"OCR processing for page {i+1} of {pdf_path.name}"
+                )
+                
+                if page_text.strip():
+                    all_text += f"{page_text}\n"
+                    total_confidence += confidence
+                    page_count += 1
+                    logger.info(f"OCR page {i+1}: {confidence:.1f}% confidence")
+                    
+            except TimeoutError:
+                logger.warning(f"OCR timeout on page {i+1} of {pdf_path.name}, skipping")
+                continue
+            except Exception as e:
+                logger.warning(f"OCR failed on page {i+1} of {pdf_path.name}: {e}")
+                continue
         
         if page_count > 0:
             avg_confidence = total_confidence / page_count
@@ -205,13 +305,16 @@ def _extract_text_from_pdf_with_ocr(pdf_path: Path) -> str:
         
         return all_text
         
+    except TimeoutError as e:
+        logger.error(f"PDF OCR timeout for {pdf_path}: {e}")
+        raise PDFProcessingError(f"OCR operation timed out for PDF: {pdf_path}")
     except Exception as e:
         logger.error(f"PDF OCR failed for {pdf_path}: {e}")
         raise PDFProcessingError(f"Failed to OCR PDF: {e}")
 
 def extract_text_from_image(image_path: Path) -> str:
     """
-    Extract text from image file using OCR
+    Extract text from image file using OCR with timeout protection
     
     Args:
         image_path: Path to the image file
@@ -231,13 +334,21 @@ def extract_text_from_image(image_path: Path) -> str:
         if image is None:
             raise PDFProcessingError(f"Could not load image file: {image_path}")
         
-        # Extract text using OCR
-        text, confidence = _extract_text_with_tesseract(image)
+        # Extract text using OCR with timeout protection
+        text, confidence = with_timeout(
+            _extract_text_with_tesseract, 
+            args=(image,),
+            timeout_seconds=20,
+            operation_name=f"Image OCR for {image_path.name}"
+        )
         
         logger.info(f"OCR extracted text from {image_path} with {confidence:.1f}% confidence")
         
         return text
         
+    except TimeoutError as e:
+        logger.error(f"Image OCR timeout for {image_path}: {e}")
+        raise PDFProcessingError(f"OCR operation timed out for image: {image_path}")
     except Exception as e:
         logger.error(f"Image OCR failed for {image_path}: {e}")
         raise PDFProcessingError(f"Failed to process image: {e}")
