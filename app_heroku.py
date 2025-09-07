@@ -136,9 +136,8 @@ if uploaded_files:
         if errors > 0:
             st.sidebar.error(f"❌ Failed to upload {errors} files")
             
-        # Clear the file uploader by clearing the session state key
-        # This prevents the infinite loop by resetting the uploader widget
-        st.session_state.last_uploaded_files = []
+        # Keep the current file names in session state to prevent reprocessing
+        # DON'T clear - this prevents the infinite loop
         st.rerun()
 
 # If no new files to process, show current status
