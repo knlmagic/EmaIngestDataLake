@@ -38,7 +38,7 @@ load_dotenv()
 setup_tesseract_for_heroku()
 
 # Streamlit configuration
-st.set_page_config(page_title="EMA 3-Way Match Demo", layout="wide")
+st.set_page_config(page_title="EMA 3-Way Match Demo", page_icon="favicon.ico", layout="wide")
 
 # Cloud-compatible paths
 paths = get_heroku_paths()

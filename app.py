@@ -21,7 +21,7 @@ from pipeline.processing_state import (
 
 load_dotenv()
 
-st.set_page_config(page_title="EMA 3-Way Match Demo", layout="wide")
+st.set_page_config(page_title="EMA 3-Way Match Demo", page_icon="favicon.ico", layout="wide")
 
 st.title("Enterprise Machine Assistant — Procurement 3‑Way Match Demo")
 st.caption("Ingest → Classify → Extract → Reconcile → Insights")
